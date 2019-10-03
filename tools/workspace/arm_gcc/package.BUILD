@@ -16,11 +16,22 @@
 
 package(default_visibility = ["//visibility:public"])
 
-environment(name = "k8")
-environment(name = "stm32f4")
+filegroup(
+    name = "everything",
+    srcs = glob(["**"]),
+)
 
-environment_group(
-    name = "cpus",
-    environments = [":k8", ":stm32f4"],
-    defaults = [":stm32f4"],
+filegroup(
+    name = "gcc",
+    srcs = ["bin/arm-none-eabi-gcc"],
+)
+
+filegroup(
+    name = "cpp",
+    srcs = ["bin/arm-none-eabi-cpp"],
+)
+
+filegroup(
+    name = "objcopy",
+    srcs = ["bin/arm-none-eabi-objcopy"],
 )

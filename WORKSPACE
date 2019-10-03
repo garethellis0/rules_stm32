@@ -1,7 +1,7 @@
 workspace(
-    name = "stm32"
+    name = "stm32",
 )
 
-load("//stm32f4:rules.bzl", "arm_none_repository")
+load("//tools/workspace:default.bzl", "add_default_repositories")
 
-arm_none_repository()
+add_default_repositories()

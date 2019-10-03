@@ -14,13 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package(default_visibility = ["//visibility:public"])
+load("//tools/workspace/arm_gcc:repository.bzl", "arm_gcc_repository")
+load("//tools/workspace/clang:repository.bzl", "clang_repository")
 
-environment(name = "k8")
-environment(name = "stm32f4")
-
-environment_group(
-    name = "cpus",
-    environments = [":k8", ":stm32f4"],
-    defaults = [":stm32f4"],
-)
+def add_default_repositories(*, excludes = []):
+    if "arm_gcc" not in excludes:
+        arm_gcc_repository(name = "com_arm_developer_gcc")
+    if "clang" not in excludes:
+        clang_repository(name = "org_llvm_clang")

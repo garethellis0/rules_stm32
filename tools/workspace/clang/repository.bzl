@@ -1,6 +1,6 @@
 # -*- python -*-
 
-# Copyright 2018 Josh Pieper, jjp@pobox.com.
+# Copyright 2018-2019 Josh Pieper, jjp@pobox.com.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package(default_visibility = ["//visibility:public"])
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-environment(name = "k8")
-environment(name = "stm32f4")
 
-environment_group(
-    name = "cpus",
-    environments = [":k8", ":stm32f4"],
-    defaults = [":stm32f4"],
-)
+def clang_repository(name):
+    http_archive(
+        name = name,
+        urls = [
+            "http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz",
+        ],
+        sha256 = "87b88d620284d1f0573923e6f7cc89edccf11d19ebaec1cfb83b4f09ac5db09c",
+        strip_prefix = "clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-16.04",
+        build_file = Label("//tools/workspace/clang:package.BUILD"),
+    )

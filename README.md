@@ -1,6 +1,6 @@
 # Bazel Rules for STM32f4 processors #
 
-* Toolchain: arm-none-eabi-gcc 6.2.1 from [https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads]
+* Toolchain: arm-none-eabi-gcc from [https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads]
 
 ## Usage
 
@@ -14,8 +14,7 @@ git_repository(
     )
 
 load("@stm32//stm32f4:rules.bzl", "arm_none_repository")
-arm_none_repository(name="com_arm_developer_toolchain_gcc_6_2")
-``` 
+```
 ## Available Rules
 
 ### Processors

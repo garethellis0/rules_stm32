@@ -1,4 +1,4 @@
-# -*- python -*-
+#!/bin/bash --norc
 
 # Copyright 2018 Josh Pieper, jjp@pobox.com.
 #
@@ -14,13 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package(default_visibility = ["//visibility:public"])
-
-environment(name = "k8")
-environment(name = "stm32f4")
-
-environment_group(
-    name = "cpus",
-    environments = [":k8", ":stm32f4"],
-    defaults = [":stm32f4"],
-)
+exec external/com_arm_developer_gcc/bin/arm-none-eabi-ld "$@"
